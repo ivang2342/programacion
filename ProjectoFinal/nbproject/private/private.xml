@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Vista/PrincipalFrame.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Vista/AfegirProducte.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Vista/AfegirCategoria.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Vista/ModificarProducte.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Model/Categoria.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Model/Producte.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/DAO/CategoriaDAO.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/DAO/ProducteDAO.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Principal/Principal.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/DAO/CrearDB.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Controlador/ControladorCategoria.java</file>
+            <file>file:/home/ivan-gallardo/NetBeansProjects/ProjectoFinal/src/Controlador/PrincipalControlador.java</file>
+        </group>
+    </open-files>
+</project-private>

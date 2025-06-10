@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author ivan-gallardo
@@ -16,7 +18,18 @@ public class AfegirCategoria extends javax.swing.JFrame {
     public AfegirCategoria() {
         initComponents();
     }
-    public 
+    public String getnomCat() {
+        return nomCat.getText();
+    }
+    public String getCDescripcio() {
+        return descripcio.getText();
+    }
+    public JButton bAcceptarCat() {
+        return bAcceptarCat;
+    }
+    public JButton bCancelarCat() {
+        return bCancelarCat;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

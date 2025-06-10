@@ -8,7 +8,6 @@ package Controlador;
  *
  * @author ivan-gallardo
  */
-
 import DAO.ProducteDAO;
 import DAO.CategoriaDAO;
 import Model.Producte;
@@ -47,13 +46,17 @@ public class PrincipalControlador {
     private void afegirListeners() {
         vista.getJButtonAfegir().addActionListener(e -> {
             AfegirProducte finestra = new AfegirProducte();
-            ProducteControlador controlador = new ProducteControlador(finestra);
+            ProducteControlador controlador = new ProducteControlador(finestra, () -> {
+                carregarTaulaProductes();
+            });
             controlador.iniciarControlador();
         });
 
         vista.getJButtonAfegirCategoria().addActionListener(e -> {
             AfegirCategoria finestra = new AfegirCategoria();
-            ControladorCategoria controlador = new ControladorCategoria(finestra);
+            ControladorCategoria controlador = new ControladorCategoria(finestra, () -> {
+                carregarTaulaProductes();  // refresca la tabla en PrincipalControlador
+            });
             controlador.iniciarControlador();
         });
 
@@ -65,24 +68,23 @@ public class PrincipalControlador {
 
         vista.getJButtonEliminar().addActionListener(e -> eliminarProducteSeleccionat());
 
-     
     }
 
     private void carregarTaulaProductes() {
         List<Producte> productes = producteDAO.llistarProducte();
 
         DefaultTableModel model = (DefaultTableModel) vista.getJTable1().getModel();
-        model.setRowCount(0); 
+        model.setRowCount(0);
 
         for (Producte p : productes) {
-            Object[] fila = new Object[] {
-                    p.getCodi(),
-                    p.getNom(),
-                    p.getCategoria() != null ? p.getCategoria().getNom() : "No categoría",
-                    p.getPreu(),
-                    p.getTipusPreu(),
-                    p.getStock(),
-                    p.isOferta()
+            Object[] fila = new Object[]{
+                p.getCodi(),
+                p.getNom(),
+                p.getCategoria() != null ? p.getCategoria().getNom() : "No categoría",
+                p.getPreu(),
+                p.getTipusPreu(),
+                p.getStock(),
+                p.isOferta()
             };
             model.addRow(fila);
         }
@@ -100,6 +102,5 @@ public class PrincipalControlador {
                     JOptionPane.WARNING_MESSAGE);
         }
     }
-
 
 }

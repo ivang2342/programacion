@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
-
-/**
- *
- * @author ivan-gallardo
- */
 
 import Vista.AfegirProducte;
 import Model.Categoria;
@@ -20,10 +11,13 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 
 public class ProducteControlador {
-    private AfegirProducte vista;
 
-    public ProducteControlador(AfegirProducte vista) {
+    private AfegirProducte vista;
+    private final Runnable refrescarTablaCallback;  // callback para refrescar tabla
+
+    public ProducteControlador(AfegirProducte vista, Runnable refrescarTablaCallback) {
         this.vista = vista;
+        this.refrescarTablaCallback = refrescarTablaCallback;
     }
 
     private final ActionListener BotonAñadirProducte = new ActionListener() {
@@ -48,18 +42,35 @@ public class ProducteControlador {
                 ProducteDAO daoProducte = new ProducteDAO();
                 daoProducte.crearProducte(producte);
 
-                System.out.println("Producte afegit correctament: " + producte);
+                javax.swing.JOptionPane.showMessageDialog(vista, "Producte afegit correctament.");
+
+                vista.dispose();
+
+                if (refrescarTablaCallback != null) {
+                    refrescarTablaCallback.run();
+                }
 
             } catch (NumberFormatException ex) {
-                System.err.println("Error: preu o stock no vàlids.");
+                javax.swing.JOptionPane.showMessageDialog(vista, "Preu o stock no vàlids.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     };
 
+    private final ActionListener BotonCancelar = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            vista.dispose();
+            if (refrescarTablaCallback != null) {
+                refrescarTablaCallback.run();
+            }
+        }
+    };
+
     public void iniciarControlador() {
         vista.getBAcceptar().addActionListener(BotonAñadirProducte);
+        vista.getBCancelar().addActionListener(BotonCancelar);
         cargarCategoriasEnCombo();
         vista.setVisible(true);
     }

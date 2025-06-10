@@ -9,9 +9,12 @@ import java.awt.event.ActionEvent;
 
 public class ControladorCategoria {
     private AfegirCategoria vista;
+    private final Runnable refrescarTablaCallback;  // callback para refrescar
 
-    public ControladorCategoria(AfegirCategoria vista) {
+    // Nuevo constructor con callback
+    public ControladorCategoria(AfegirCategoria vista, Runnable refrescarTablaCallback) {
         this.vista = vista;
+        this.refrescarTablaCallback = refrescarTablaCallback;
     }
 
     // Acció per al botó Acceptar
@@ -26,11 +29,13 @@ public class ControladorCategoria {
                 CategoriaDAO daoCategoria = new CategoriaDAO();
                 daoCategoria.crearCategoria(categoria);
 
-                // Missatge de confirmació (opcional)
                 javax.swing.JOptionPane.showMessageDialog(vista, "Categoria afegida correctament.");
 
-                // Opcional: tancar la finestra
                 vista.dispose();
+
+                if (refrescarTablaCallback != null) {
+                    refrescarTablaCallback.run();  // refrescar tabla al cerrar
+                }
             } else {
                 javax.swing.JOptionPane.showMessageDialog(vista, "Omple tots els camps.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
@@ -41,7 +46,10 @@ public class ControladorCategoria {
     private final ActionListener bCancelarCat = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            vista.dispose();  // Tanca la finestra
+            vista.dispose();
+            if (refrescarTablaCallback != null) {
+                refrescarTablaCallback.run();  // refrescar también al cancelar
+            }
         }
     };
 

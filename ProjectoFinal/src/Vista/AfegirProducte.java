@@ -41,7 +41,9 @@ public class AfegirProducte extends javax.swing.JFrame {
     public javax.swing.JButton getBAcceptar() {
         return bAcceptarafegir;
     }
-
+    public javax.swing.JButton getBCancelar() {
+        return bCancelar;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
